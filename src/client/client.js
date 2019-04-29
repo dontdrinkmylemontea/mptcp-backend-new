@@ -19,20 +19,19 @@ app.use(bodyParser.json());
 
 const pingStatus = {
   hasError: false,
+  finished: false,
   state: []
 };
 
 //需要轮询
 app.get("/ping", (req, res) => {
   if (req.query.sub == 0) {
-    res.status(200).send(getObj(0, pingStatus.state));
+    res.status(200).send(getObj(0, pingStatus));
     pingStatus.hasError = false;
     pingStatus.state = [];
     ping(pingStatus);
-  } else if (pingStatus.hasError) {
-    res.status(500).send(getObj(-1, pingStatus.state));
   } else {
-    res.status(200).send(getObj(0, pingStatus.state));
+    res.status(200).send(getObj(0, pingStatus));
   }
 });
 

@@ -21,6 +21,9 @@ exports.ping = function(pingState) {
         pingState.state.push(shellRes.stderr);
       }
       pingState.state.push(stdout);
+      if (pingAddrs.length === pingState.state.length) {
+        pingState.finished = true;
+      }
     });
   }
 };
