@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { ping } = require("./ping");
-const { config } = require("./config");
+const { ping, config } = require("../util/util");
 const { runtest } = require("./runtest");
 const app = express();
 const port = 8080;
@@ -23,6 +22,7 @@ const pingStatus = {
   state: []
 };
 
+/* 测试通过 */
 app.get("/ping", (req, res) => {
   if (req.query.sub == 0) {
     res.status(200).send(pingStatus);
@@ -34,6 +34,7 @@ app.get("/ping", (req, res) => {
   }
 });
 
+/* 测试通过 */
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
   const result = config(scheduler, congestion);
@@ -46,6 +47,7 @@ const testStatus = {
   state: []
 };
 
+/* 测试通过 */
 app.post("/runtest", (req, res) => {
   if (req.query.sub == 0) {
     runtest(testStatus, req.body);

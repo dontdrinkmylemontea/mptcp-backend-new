@@ -1,6 +1,5 @@
 const express = require("express");
-const { ping } = require("./ping");
-const { config } = require("./config");
+const { ping, config } = require("../util/util");
 const { init } = require("./init");
 const app = express();
 const port = 8081;
