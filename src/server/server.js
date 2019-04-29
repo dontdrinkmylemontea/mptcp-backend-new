@@ -1,5 +1,6 @@
 const express = require("express");
 const ping = require("./ping");
+const { config } = require("./config");
 const app = express();
 const port = 8081;
 
@@ -33,7 +34,12 @@ app.get("/ping", (req, res) => {
   }
 });
 
-app.post("/config", (req, res) => {});
+// 不需要轮询
+app.get("/config", (req, res) => {
+  const { scheduler, congestion } = req.query;
+  const result = config(scheduler, congestion);
+  res.send(getObj(0, result));
+});
 
 app.post("/init", (req, res) => {});
 

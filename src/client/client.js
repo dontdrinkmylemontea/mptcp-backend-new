@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { getObj } = require("../util/util");
 const { ping } = require("./ping");
+const { config } = require("./config");
 const app = express();
 const port = 8080;
 
@@ -36,16 +37,10 @@ app.get("/ping", (req, res) => {
 });
 
 // 不需要轮询
-app.post("/config", (req, res) => {
-  const {
-    scheduler,
-    congestion,
-    objsize,
-    bdcar,
-    limitvar,
-    repnum,
-    rttvar1
-  } = res.body;
+app.get("/config", (req, res) => {
+  const { scheduler, congestion } = req.query;
+  const result = config(scheduler, congestion);
+  res.send(getObj(0, result));
 });
 
 // 需要轮询
