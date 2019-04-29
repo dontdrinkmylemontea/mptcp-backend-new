@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
 SLEEP_TIME=1.0/4.0
+STDOUT.sync = true
 prefix = "."
 iface="eth0"
 wanemip1="192.168.3.25"

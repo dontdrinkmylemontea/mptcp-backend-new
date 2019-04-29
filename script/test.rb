@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
 SLEEP_TIME=1.0/4.0
+STDOUT.sync = true
 prefix = "."
 iface="eth0"
 wanemip1="192.168.3.25"
@@ -23,3 +24,15 @@ puts _BDVAR
 puts _LIMITVAR
 puts _REPNUM
 puts _RTTVAR1
+
+sleep(4)
+
+puts 10
+
+sleep(4)
+
+puts 20
+
+sleep(4)
+
+puts 'ok'
