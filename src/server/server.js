@@ -1,6 +1,7 @@
 const express = require("express");
-const ping = require("./ping");
+const { ping } = require("./ping");
 const { config } = require("./config");
+const { init } = require("./init");
 const app = express();
 const port = 8081;
 
@@ -41,7 +42,9 @@ app.get("/config", (req, res) => {
   res.send(getObj(0, result));
 });
 
-app.post("/init", (req, res) => {});
+app.get("/init", (req, res) => {
+  res.send(getObj(0, init()));
+});
 
 app.get("/result", (req, res) => {});
 
