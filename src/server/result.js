@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { getObj } = require("../util/util");
 
 const filePath = "/home/yiyi/gd/backend/result/topo1-buffersize-blest-1004.txt";
 
@@ -11,14 +12,9 @@ exports.result = function(req, res) {
     while (readed > 0) {
       fs.read(fd, buf, begin, 1024, 0, function(error, bytes) {
         if (error) throw error;
-        res.send(buf.toString());
+        res.send(getObj(buf.toString()));
         readed = bytes;
       });
     }
-  });
-
-  fs.readFile(filePath, function(err, data) {
-    if (err) throw err;
-    res.send(data);
   });
 };

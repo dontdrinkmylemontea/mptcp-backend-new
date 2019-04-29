@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { ping, config } = require("../util/util");
+const { ping, config, getObj } = require("../util/util");
 const { init } = require("./init");
 const { result } = require("./result");
 const app = express();
@@ -29,24 +29,22 @@ const pingStatus = {
 
 //需要轮询
 app.get("/ping", (req, res) => {
+  res.status(200).send(getObj(pingStatus));
   if (req.query.sub == 0) {
-    res.status(200).send(pingStatus);
     pingStatus.hasError = false;
     pingStatus.state = [];
     ping(pingStatus);
-  } else {
-    res.status(200).send(pingStatus);
   }
 });
 
 // 不需要轮询
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
-  res.send(config(scheduler, congestion));
+  res.send(getObj(config(scheduler, congestion)));
 });
 
 app.get("/init", (req, res) => {
-  res.send(init());
+  res.send(getObj(init()));
 });
 
 app.get("/result", result);

@@ -45,3 +45,7 @@ exports.config = function(scheduler, congestion) {
   }
   return res;
 };
+
+exports.getObj = function(data) {
+  return { errCode: 0, data };
+};
