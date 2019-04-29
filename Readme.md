@@ -10,14 +10,19 @@ npm run client
 
 _以下提到的文件位置都是绝对位置_
 
+客户端服务端都需要配置：
+
+1. ping 地址数组： src/util/util.js pingAddrs
+
 ## 服务端
 
-1. 开机脚本位置：START_TEST_ADDR
-1. 结果文件存储位置：RESULT_FILE_PATH
+1. 开机脚本位置： src/server/init.js initScriptPath
+1. 结果文件存储位置： src/server/result.js filePath
 
 ## 客户端
 
-1. 测试脚本位置： SCRIPT_PATH
+1. 测试脚本位置： src/client/runtest.js SCRIPT_PATH
+1. 测试脚本文件名： src/client/runtest.js SCRIPT_Name
 
 客户端
 

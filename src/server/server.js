@@ -1,6 +1,8 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const { ping, config } = require("../util/util");
 const { init } = require("./init");
+const { result } = require("./result");
 const app = express();
 const port = 8081;
 
@@ -44,6 +46,6 @@ app.get("/init", (req, res) => {
   res.send(getObj(0, init()));
 });
 
-app.get("/result", (req, res) => {});
+app.get("/result", result);
 
 app.listen(port, () => console.log(`client server running on port ${port}`));
