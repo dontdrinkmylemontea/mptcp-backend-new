@@ -1,15 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const ping = require("./ping");
+const { getObj } = require("../util/util");
+const { ping } = require("./ping");
 const app = express();
 const port = 8080;
 
 app.use((req, res, next) => {
   res.set("Content-Type", "text/json");
-  res.setDefaultEncoding("utf-8");
   res.append("Access-Control-Allow-Origin", ["*"]);
   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.append("Access-Control-Allow-Headers", "Content-Type");
+  console.log(`request for ${req.path} received`);
   next();
 });
 
@@ -22,15 +23,15 @@ const pingStatus = {
 
 //需要轮询
 app.get("/ping", (req, res) => {
-  if (req.query.sub === 0) {
+  if (req.query.sub == 0) {
+    res.status(200).send(getObj(0, pingStatus.state));
+    pingStatus.hasError = false;
+    pingStatus.state = [];
     ping(pingStatus);
   } else if (pingStatus.hasError) {
-    res
-      .status(500)
-      .send("error")
-      .send(pingStatus.state);
+    res.status(500).send(getObj(-1, pingStatus.state));
   } else {
-    res.send(pingStatus.state);
+    res.status(200).send(getObj(0, pingStatus.state));
   }
 });
 
