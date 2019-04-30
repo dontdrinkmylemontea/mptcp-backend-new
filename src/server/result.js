@@ -8,7 +8,7 @@ exports.result = function(req, res) {
   const begin = 0;
   fs.open(filePath, "r+", function(err, fd) {
     if (err) throw err;
-    let readed = 0;
+    let readed = 1;
     while (readed > 0) {
       fs.read(fd, buf, begin, 1024, 0, function(error, bytes) {
         if (error) throw error;

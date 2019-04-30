@@ -6,6 +6,7 @@
   "scripts": {
     "server": "node ./src/server/server.js",
     "client": "node ./src/client/client.js",
+    "result": "node ./src/util/resultParser.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
