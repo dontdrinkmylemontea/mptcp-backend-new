@@ -25,19 +25,19 @@ const pingStatus = {
 /* 测试通过 */
 app.get("/ping", (req, res) => {
   if (req.query.sub == 0) {
-    res.status(200).send(pingStatus);
+    res.status(200).json(pingStatus);
     pingStatus.hasError = false;
     pingStatus.state = [];
     ping(pingStatus);
   } else {
-    res.status(200).send(getObj(pingStatus));
+    res.status(200).json(getObj(pingStatus));
   }
 });
 
 /* 测试通过 */
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
-  res.send(getObj(config(scheduler, congestion)));
+  res.json(getObj(config(scheduler, congestion)));
 });
 
 const testStatus = {
@@ -51,7 +51,7 @@ app.post("/runtest", (req, res) => {
   if (req.query.sub == 0) {
     runtest(testStatus, req.body);
   }
-  res.status(200).send(getObj(testStatus));
+  res.status(200).json(getObj(testStatus));
 });
 
 app.listen(port, () => console.log(`client server running on port ${port}`));

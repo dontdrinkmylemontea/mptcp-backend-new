@@ -24,7 +24,7 @@ const pingStatus = {
 
 //需要轮询
 app.get("/ping", (req, res) => {
-  res.status(200).send(getObj(pingStatus));
+  res.status(200).json(getObj(pingStatus));
   if (req.query.sub == 0) {
     pingStatus.hasError = false;
     pingStatus.state = [];
@@ -35,11 +35,11 @@ app.get("/ping", (req, res) => {
 // 不需要轮询
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
-  res.send(getObj(config(scheduler, congestion)));
+  res.json(getObj(config(scheduler, congestion)));
 });
 
 app.get("/init", (req, res) => {
-  res.send(getObj(init()));
+  res.json(getObj(init()));
 });
 
 app.get("/result", result);
