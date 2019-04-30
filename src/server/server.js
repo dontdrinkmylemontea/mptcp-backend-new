@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const { ping, config, getObj } = require("../util/util");
 const { init } = require("./init");
@@ -8,16 +9,10 @@ const port = 8081;
 
 app.use((req, res, next) => {
   res.set("Content-Type", "text/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin"
-  );
-  console.log(`request for ${req.path} received`);
+  console.log(`request for ${req.path} received, querystring:`, req.query);
   next();
 });
+app.use(cors());
 
 app.use(bodyParser.json());
 
