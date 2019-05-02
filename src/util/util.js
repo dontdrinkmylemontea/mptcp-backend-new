@@ -1,4 +1,9 @@
 const { exec, execSync } = require("child_process");
+
+function getResponseMsg(error, data) {
+  return JSON.stringify({ error, data });
+}
+
 exports.getObj = function(errorCode, message) {
   return {
     errorCode,
@@ -17,18 +22,20 @@ exports.getObj = function(errorCode, message) {
 // ];
 const pingAddrs = ["baidu.com", "1.1.1.1", "127.0.0.1"];
 
-exports.ping = function(pingState) {
+exports.ping = function(socket, id) {
   console.log("start ping...");
+  let counter = 0;
   for (let i = 0; i < pingAddrs.length; i++) {
     exec(`ping ${pingAddrs[i]} -c 10`, function(error, stdout, stderr) {
+      counter++;
       if (error) throw error;
       if (stderr) {
-        pingState.hasError = true;
-        pingState.state.push(shellRes.stderr);
+        socket.send(getResponseMsg(-1, { message: stderr, id }));
       }
-      pingState.state.push(stdout);
-      if (pingAddrs.length === pingState.state.length) {
-        pingState.finished = true;
+      socket.send(getResponseMsg(0, stdout));
+      if (pingAddrs.length === counter) {
+        socket.send(getResponseMsg(1, { message: "已完成。", id }));
+        console.log("ping finished.");
       }
     });
   }

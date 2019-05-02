@@ -1,40 +1,27 @@
-const express = require("express");
+const app = require("express")();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { ping, config, getObj } = require("../util/util");
 const { runtest } = require("./runtest");
-const app = express();
-const port = 8080;
 
+const port = 8080;
+let unionId = 0; //自增id
+
+app.use(cors());
+app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.set("Content-Type", "text/json");
   console.log(`request for ${req.path} received, querystring:`, req.query);
   next();
 });
 
-app.use(cors());
-
-app.use(bodyParser.json());
-
-const pingStatus = {
-  hasError: false,
-  finished: false,
-  state: []
-};
-
-/* 测试通过 */
 app.get("/ping", (req, res) => {
-  if (req.query.sub == 0) {
-    res.status(200).json(pingStatus);
-    pingStatus.hasError = false;
-    pingStatus.state = [];
-    ping(pingStatus);
-  } else {
-    res.status(200).json(getObj(pingStatus));
-  }
+  res.status(200).json(getObj(0, { message: "开始ping...", id: ++unionId }));
+  ping(io.sockets, unionId);
 });
 
-/* 测试通过 */
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
   res.json(getObj(config(scheduler, congestion)));
