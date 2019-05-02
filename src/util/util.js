@@ -4,13 +4,6 @@ function getResponseMsg(error, data) {
   return JSON.stringify({ error, data });
 }
 
-exports.getObj = function(errorCode, message) {
-  return {
-    errorCode,
-    message
-  };
-};
-
 // const pingAddrs = [
 //   "192.168.1.45",
 //   "192.168.1.15",
@@ -32,7 +25,7 @@ exports.ping = function(socket, id) {
       if (stderr) {
         socket.send(getResponseMsg(-1, { message: stderr, id }));
       }
-      socket.send(getResponseMsg(0, stdout));
+      socket.send(getResponseMsg(0,  { message: stdout, id }));
       if (pingAddrs.length === counter) {
         socket.send(getResponseMsg(1, { message: "已完成。", id }));
         console.log("ping finished.");

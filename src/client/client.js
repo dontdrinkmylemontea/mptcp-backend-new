@@ -1,6 +1,6 @@
 const app = require("express")();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { ping, config, getObj } = require("../util/util");
@@ -8,6 +8,8 @@ const { runtest } = require("./runtest");
 
 const port = 8080;
 let unionId = 0; //自增id
+
+server.listen(port);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -18,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/ping", (req, res) => {
-  res.status(200).json(getObj(0, { message: "开始ping...", id: ++unionId }));
+  res.status(200).json(getObj({ message: "开始ping...", id: ++unionId }));
   ping(io.sockets, unionId);
 });
 
