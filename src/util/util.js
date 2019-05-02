@@ -25,7 +25,7 @@ exports.ping = function(socket, id) {
       if (stderr) {
         socket.send(getResponseMsg(-1, { message: stderr, id }));
       }
-      socket.send(getResponseMsg(0,  { message: stdout, id }));
+      socket.send(getResponseMsg(0, { message: stdout, id }));
       if (pingAddrs.length === counter) {
         socket.send(getResponseMsg(1, { message: "已完成。", id }));
         console.log("ping finished.");
@@ -35,15 +35,20 @@ exports.ping = function(socket, id) {
 };
 
 exports.config = function(scheduler, congestion) {
-  const res = execSync(
-    `sysctl -w net.mptcp.mptcp_scheduler=${scheduler}`
-  ).toString();
-  if (congestion) {
-    res += execSync(
-      `sysctl -w net.ipv4.tcp_congestion_control=${congestion}`
+  try {
+    const res = execSync(
+      `sysctl -w net.mptcp.mptcp_scheduler=${scheduler}`
     ).toString();
+
+    if (congestion) {
+      res += execSync(
+        `sysctl -w net.ipv4.tcp_congestion_control=${congestion}`
+      ).toString();
+    }
+    return res;
+  } catch (error) {
+    return error.toString();
   }
-  return res;
 };
 
 exports.getObj = function(data) {
