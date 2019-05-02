@@ -23,7 +23,14 @@ exports.ping = function(socket, id) {
   for (let i = 0; i < pingAddrs.length; i++) {
     exec(`ping ${pingAddrs[i]} -c 10`, function(error, stdout, stderr) {
       counter++;
-      if (error) throw error;
+      if (error) {
+        socket.send(
+          getResponseMsg(-1, {
+            message: `[!！重要]:服务器内部错误：${error.toString()}`,
+            id
+          })
+        );
+      }
       if (stderr) {
         socket.send(getResponseMsg(-1, { message: stderr, id }));
       }
