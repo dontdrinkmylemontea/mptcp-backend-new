@@ -15,6 +15,8 @@ function getResponseMsg(error, data) {
 // ];
 const pingAddrs = ["baidu.com", "1.1.1.1", "127.0.0.1"];
 
+exports.getResponseMsg = getResponseMsg;
+
 exports.ping = function(socket, id) {
   console.log("start ping...");
   let counter = 0;

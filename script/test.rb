@@ -19,6 +19,8 @@ _LIMITVAR = cmdArgs["limitvar"].split(",")
 _REPNUM = cmdArgs["repnum"]
 _RTTVAR1 = cmdArgs["rttvar1"]
 
+puts cmdArgs
+
 puts _OBJSIZE
 puts _BDVAR
 puts _LIMITVAR

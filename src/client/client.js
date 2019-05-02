@@ -29,18 +29,16 @@ app.get("/config", (req, res) => {
   res.json(getObj(config(scheduler, congestion)));
 });
 
-const testStatus = {
-  hasError: false,
-  finished: false,
-  state: []
-};
-
-/* 测试通过 */
 app.post("/runtest", (req, res) => {
-  if (req.query.sub == 0) {
-    runtest(testStatus, req.body);
-  }
-  res.status(200).json(getObj(testStatus));
+  res.status(200).json(getObj({ message: "开始运行测试...", id: ++unionId }));
+  runtest(io.sockets, unionId, req.body);
+});
+
+io.on("connection", function(socket) {
+  console.log("a user connected.");
+  socket.on("disconnect", function() {
+    console.log("user disconnected");
+  });
 });
 
 console.log(`client server running on port ${port}`);

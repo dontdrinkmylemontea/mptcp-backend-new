@@ -1,10 +1,11 @@
 const { spawn } = require("child_process");
+const { getResponseMsg } = require("../util/util");
 
 // const SCRIPT_PATH = "../script/mptcp_benchmark_test.rb";
 const SCRIPT_PATH = "/home/yiyi/gd/backend/script/";
 const SCRIPT_NAME = "test.rb";
 
-exports.runtest = function(testStatus, content) {
+exports.runtest = function(sockets, id, content) {
   const args = [];
   args.push(`${SCRIPT_PATH}${SCRIPT_NAME}`);
   for (const item in content) {
@@ -12,21 +13,18 @@ exports.runtest = function(testStatus, content) {
   }
   const rubytest = spawn("ruby", args);
   rubytest.stdout.on("data", data => {
-    testStatus.state.push(data.toString());
+    sockets.send(getResponseMsg(0, { message: data.toString(), id }));
   });
 
   rubytest.stderr.on("data", data => {
-    testStatus.hasError = true;
-    testStatus.state.push(data.toString());
+    sockets.send(getResponseMsg(-1, { message: data.toString(), id }));
   });
 
-  rubytest.on("close", code => {
-    testStatus.finished = true;
-    testStatus.state.push(`${code}运行结束`);
+  rubytest.on("close", () => {
+    sockets.send(getResponseMsg(1, { message: "测试结束。", id }));
   });
 
   rubytest.on("error", err => {
-    testStatus.hasError = true;
-    testStatus.state.push(err);
+    sockets.send(getResponseMsg(-1, { message: err.toString(), id }));
   });
 };
