@@ -43,4 +43,4 @@ app.post("/runtest", (req, res) => {
   res.status(200).json(getObj(testStatus));
 });
 
-app.listen(port, () => console.log(`client server running on port ${port}`));
+console.log(`client server running on port ${port}`);
