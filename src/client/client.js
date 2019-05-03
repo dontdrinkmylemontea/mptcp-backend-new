@@ -3,7 +3,7 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { ping, config, getObj } = require("../util/util");
+const { ping, config, getObj, init } = require("../util/util");
 const { runtest } = require("./runtest");
 
 const port = 8080;
@@ -27,6 +27,10 @@ app.get("/ping", (req, res) => {
 app.get("/config", (req, res) => {
   const { scheduler, congestion } = req.query;
   res.json(getObj(config(scheduler, congestion)));
+});
+
+app.get("/init", (req, res) => {
+  res.json(getObj(init()));
 });
 
 app.post("/runtest", (req, res) => {

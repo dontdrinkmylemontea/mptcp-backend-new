@@ -3,8 +3,7 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { ping, config, getObj } = require("../util/util");
-const { init } = require("./init");
+const { ping, config, getObj, init } = require("../util/util");
 const { result } = require("./result");
 
 const port = 8081;

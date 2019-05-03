@@ -4,6 +4,8 @@ const { getResponseMsg } = require("../util/util");
 // const SCRIPT_PATH = "../script/mptcp_benchmark_test.rb";
 const SCRIPT_PATH = "/home/yiyi/gd/backend/script/";
 const SCRIPT_NAME = "test.rb";
+// const SCRIPT_PATH = "/home/xjy/topo";
+// const SCRIPT_NAME = "test.rb";
 
 exports.runtest = function(sockets, id, content) {
   const args = [];

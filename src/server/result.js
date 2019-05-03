@@ -2,6 +2,7 @@ const fs = require("fs");
 const { getObj } = require("../util/util");
 
 const filePath = "/home/yiyi/gd/backend/result/topo1-buffersize-blest-1004.txt";
+// const filePath = "/var/log/kern.log";
 
 exports.result = function(req, res) {
   const buf = new Buffer.alloc(1024);
