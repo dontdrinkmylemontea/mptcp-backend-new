@@ -1,13 +1,11 @@
 const fs = require("fs");
 const { getObj } = require("../util/util");
-
-const filePath = "/home/yiyi/gd/backend/result/topo1-buffersize-blest-1004.txt";
-// const filePath = "/var/log/kern.log";
+const { resultFilePath } = require("../../config");
 
 exports.result = function(req, res) {
   const buf = new Buffer.alloc(1024);
   const begin = 0;
-  fs.open(filePath, "r+", function(err, fd) {
+  fs.open(resultFilePath, "r+", function(err, fd) {
     if (err) throw err;
     let readed = 1;
     while (readed > 0) {

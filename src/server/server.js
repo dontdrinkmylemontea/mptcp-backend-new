@@ -33,7 +33,9 @@ app.get("/init", (req, res) => {
   res.json(getObj(init()));
 });
 
-app.get("/result", result);
+app.get("/result", (req, res) => {
+  const { repnum, limitvar, bdvar, objsize } = req.query;
+});
 
 io.on("connection", function(socket) {
   console.log("a user connected.");

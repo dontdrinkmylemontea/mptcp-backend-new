@@ -1,15 +1,12 @@
-const { spawn } = require("child_process");
+const { spawn, execSync } = require("child_process");
 const { getResponseMsg } = require("../util/util");
+const { testScriptPath } = require("../../config");
 
-// const SCRIPT_PATH = "../script/mptcp_benchmark_test.rb";
-const SCRIPT_PATH = "/home/yiyi/gd/backend/script/";
-const SCRIPT_NAME = "test.rb";
-// const SCRIPT_PATH = "/home/xjy/topo";
-// const SCRIPT_NAME = "test.rb";
+function clearResult() {}
 
 exports.runtest = function(sockets, id, content) {
   const args = [];
-  args.push(`${SCRIPT_PATH}${SCRIPT_NAME}`);
+  args.push(testScriptPath);
   for (const item in content) {
     args.push(` --${item}=${content[item]}`);
   }

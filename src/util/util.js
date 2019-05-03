@@ -1,24 +1,9 @@
 const { exec, execSync } = require("child_process");
+const { pingAddrs, startScriptPath } = require("../../config");
 
 function getResponseMsg(error, data) {
   return JSON.stringify({ error, data });
 }
-
-// const pingAddrs = [
-//   "192.168.1.45",
-//   "192.168.1.15",
-//   "192.168.3.25",
-//   "192.168.2.45",
-//   "192.168.2.15",
-//   "192.168.3.15",
-//   "192.168.3.55"
-// ];
-const pingAddrs = [
-  "baidu.com",
-  "1.1.1.1",
-  "127.0.0.1",
-  "zhoujielunabcdefg.com"
-];
 
 exports.getResponseMsg = getResponseMsg;
 
@@ -84,11 +69,9 @@ exports.getObj = function(data) {
   return { errCode: 0, data };
 };
 
-const initScriptPath = "/home/draw/";
-const fileName = "teststart.sh";
 exports.init = function() {
   try {
-    return execSync(`sh ${initScriptPath}${fileName}`).toString();
+    return execSync(`sh ${startScriptPath}`).toString();
   } catch (error) {
     return error.toString();
   }
