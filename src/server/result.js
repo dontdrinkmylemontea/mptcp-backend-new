@@ -38,7 +38,8 @@ const getTimes = lines => {
 const handleTimes = (
   res,
   times,
-  { repnum, limitvar, bdvar, objsize, filePath, scheduler, congestion }
+  { repnum, limitvar, bdvar, objsize, filePath, scheduler, congestion },
+  name
 ) => {
   const limitvars = limitvar.split(",");
   const bdvars = bdvar.split(",");
@@ -67,6 +68,7 @@ const handleTimes = (
     }
   }
   const resObj = {
+    name,
     scheduler,
     congestion,
     result: handled,
@@ -81,22 +83,28 @@ exports.result = function(
   res
 ) {
   // 将结果复制到保存文件里
-  const fileSavePath = `${resultSavePath}${name}-${new Date().getTime()}`;
+  const saveName = `${name}-${new Date().getTime()}`;
+  const fileSavePath = `${resultSavePath}${saveName}`;
   fs.copyFile(resultFilePath, `${fileSavePath}.txt`, err => {
     if (err) {
       throw err;
     }
   });
   const timesWrapper = times => {
-    handleTimes(res, times, {
-      repnum,
-      limitvar,
-      bdvar,
-      objsize,
-      filePath: fileSavePath,
-      scheduler,
-      congestion
-    });
+    handleTimes(
+      res,
+      times,
+      {
+        repnum,
+        limitvar,
+        bdvar,
+        objsize,
+        filePath: fileSavePath,
+        scheduler,
+        congestion
+      },
+      saveName
+    );
   };
   readResultFile()
     .then(getTimes)
