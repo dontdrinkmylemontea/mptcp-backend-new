@@ -4,7 +4,7 @@ const io = require("socket.io")(server);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { ping, config, getObj, init } = require("../util/util");
-const { result } = require("./result");
+const { result, clearResult } = require("./result");
 
 const port = 8081;
 let unionId = 0; //自增id
@@ -31,6 +31,10 @@ app.get("/config", (req, res) => {
 
 app.get("/init", (req, res) => {
   res.json(getObj(init()));
+});
+
+app.get("/clear", (req, res) => {
+  res.json(getObj(clearResult()));
 });
 
 app.post("/result", (req, res) => {

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { execSync } = require("child_process");
 const { resultFilePath, resultSavePath } = require("../../config");
 const { getObj } = require("../util/util");
 
@@ -95,4 +96,14 @@ exports.result = function(
   readResultFile()
     .then(getTimes)
     .then(timesWrapper);
+};
+
+exports.clearResult = () => {
+  /* 清空结果文件 */
+  try {
+    const res = execSync(`echo > ${resultFilePath}`);
+    return res;
+  } catch (error) {
+    return error.toString();
+  }
 };
