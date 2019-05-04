@@ -46,20 +46,19 @@ const handleTimes = (
   let counter = 0;
   const handled = [];
   let sumTime = 0;
+  // 计算平均时间
   for (let i = 1; i <= times.length; i++) {
-    sumTime += Number(times[i]);
+    sumTime += Number(times[i - 1]);
     if (i % Number(repnum) === 0) {
       handled.push({ averageTime: sumTime / Number(repnum) });
       sumTime = 0;
     }
   }
-
   for (let obj in objsizes) {
     for (let bd in bdvars) {
       for (let li in limitvars) {
-        handled[i] = {
-          ...handled[i],
-          repnum: repnums[re],
+        handled[counter++] = {
+          ...handled[counter - 1],
           limitvar: limitvars[li],
           bdvar: bdvars[bd],
           objsize: objsizes[obj]
@@ -67,8 +66,14 @@ const handleTimes = (
       }
     }
   }
-  fs.writeFileSync(`${filePath}.json`, JSON.stringify(handled));
-  res.send(getObj({ scheduler, congestion, result: handled }));
+  const resObj = {
+    scheduler,
+    congestion,
+    result: handled,
+    resultPath: filePath
+  };
+  fs.writeFileSync(`${filePath}.json`, JSON.stringify(resObj));
+  res.json(getObj(resObj));
 };
 
 exports.result = function(
@@ -88,7 +93,7 @@ exports.result = function(
       limitvar,
       bdvar,
       objsize,
-      filePath,
+      filePath: fileSavePath,
       scheduler,
       congestion
     });

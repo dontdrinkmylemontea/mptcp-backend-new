@@ -8,8 +8,7 @@ exports.pingAddrs = [
 /* 开机脚本路径 */
 exports.startScriptPath = "/home/draw/teststart.sh";
 /* 结果文件路径 */
-exports.resultFilePath =
-  "/home/yiyi/gd/backend/mock/topo1-buffersize-blest-1004.txt";
+exports.resultFilePath = "/home/yiyi/gd/backend/mock/result.txt";
 /* 测试脚本路径 */
 exports.testScriptPath = "/home/yiyi/gd/backend/script/test.rb";
 /* 服务器生成日志路径 */
