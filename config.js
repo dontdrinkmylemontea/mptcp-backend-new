@@ -9,9 +9,11 @@ exports.pingAddrs = [
 exports.startScriptPath = "/home/draw/teststart.sh";
 /* 结果文件路径 */
 exports.resultFilePath =
-  "/home/yiyi/gd/backend/result/topo1-buffersize-blest-1004.txt";
+  "/home/yiyi/gd/backend/mock/topo1-buffersize-blest-1004.txt";
 /* 测试脚本路径 */
 exports.testScriptPath = "/home/yiyi/gd/backend/script/test.rb";
+/* 服务器生成日志路径 */
+exports.resultSavePath = "/home/yiyi/gd/backend/result/";
 
 // /* ping地址组 */
 // exports.pingAddrs = [
@@ -28,3 +30,5 @@ exports.testScriptPath = "/home/yiyi/gd/backend/script/test.rb";
 // exports.resultFilePath = "/var/log/kern.log";
 // /* 测试脚本路径 */
 // exports.testScriptPath = "/home/xjy/topo/test.rb";
+/* 服务器生成日志路径 */
+// exports.resultSavePath = "/home/draw/auto-control/backend/result/";

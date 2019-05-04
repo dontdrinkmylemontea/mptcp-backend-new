@@ -33,9 +33,8 @@ app.get("/init", (req, res) => {
   res.json(getObj(init()));
 });
 
-app.get("/result", (req, res) => {
-  const { repnum, limitvar, bdvar, objsize } = req.query;
-  result({ repnum, limitvar, bdvar, objsize });
+app.post("/result", (req, res) => {
+  result(req.body, res);
 });
 
 io.on("connection", function(socket) {

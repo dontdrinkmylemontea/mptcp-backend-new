@@ -1,8 +1,7 @@
 const fs = require("fs");
 
 const parseResult = function() {
-  const filePath =
-    "/home/yiyi/gd/backend/result/topo1-buffersize-blest-1004.txt";
+  const filePath = "/home/yiyi/gd/backend/mock/topo1-buffersize-blest-1004.txt";
   const readResultFile = new Promise(function(resolve, reject) {
     fs.open(filePath, "r+", function(err, fd) {
       if (err) {
@@ -25,12 +24,13 @@ const parseResult = function() {
     const times = [];
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].indexOf(" time:") !== -1) {
-        times.push(lines[i]);
+        times.push(lines[i].split(" ")[13]);
       }
     }
+    return times;
   };
 
-  readResultFile.then(parseResultData);
+  readResultFile.then(parseResultData).then();
 };
 
 parseResult();
