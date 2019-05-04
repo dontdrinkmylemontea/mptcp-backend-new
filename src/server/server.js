@@ -35,6 +35,7 @@ app.get("/init", (req, res) => {
 
 app.get("/result", (req, res) => {
   const { repnum, limitvar, bdvar, objsize } = req.query;
+  result({ repnum, limitvar, bdvar, objsize });
 });
 
 io.on("connection", function(socket) {

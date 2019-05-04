@@ -1,10 +1,16 @@
 const { spawn, execSync } = require("child_process");
 const { getResponseMsg } = require("../util/util");
-const { testScriptPath } = require("../../config");
-
-function clearResult() {}
+const { testScriptPath, resultFilePath } = require("../../config");
 
 exports.runtest = function(sockets, id, content) {
+  /* 清空结果文件 */
+  try {
+    const res = execSync(`echo > ${resultFilePath}`);
+    sockets.send(getResponseMsg(0, { message: res, id }));
+  } catch (error) {
+    sockets.send(getResponseMsg(-1, { message: error.toString(), id }));
+  }
+  /* 执行脚本 */
   const args = [];
   args.push(testScriptPath);
   for (const item in content) {
