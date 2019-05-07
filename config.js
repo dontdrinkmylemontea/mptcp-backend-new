@@ -6,7 +6,7 @@ exports.pingAddrs = [
   "zhoujielunabcdefg.com"
 ];
 /* 开机脚本路径 */
-exports.startScriptPath = "/home/draw/teststart.sh";
+exports.startScriptPath = "/home/yiyi/gd/backend/script/start.sh";
 /* 结果文件路径 */
 exports.resultFilePath = "/home/yiyi/gd/backend/mock/result.txt";
 /* 测试脚本路径 */

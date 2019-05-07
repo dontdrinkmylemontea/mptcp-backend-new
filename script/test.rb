@@ -19,22 +19,25 @@ _LIMITVAR = cmdArgs["limitvar"].split(",")
 _REPNUM = cmdArgs["repnum"]
 _RTTVAR1 = cmdArgs["rttvar1"]
 
-puts cmdArgs
+# puts cmdArgs
 
-puts _OBJSIZE
-puts _BDVAR
-puts _LIMITVAR
-puts _REPNUM
-puts _RTTVAR1
+# puts _OBJSIZE
+# puts _BDVAR
+# puts _LIMITVAR
+# puts _REPNUM
+# puts _RTTVAR1
+puts "This script is going to run scripts and analyze the generated data then ouput the result into screen and save the records to log, trace and nsout folders respectively"
+sleep(1)
+puts "This script is runing WGET!.......Please wait!!This may take a long while!"
+sleep(1)
+puts "i am here 1"
+sleep(1)
+puts 'Setting WANem...'
+sleep(1)
+puts '  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current'
+sleep(1)
+puts '                                 Dload  Upload   Total   Spent    Left  Speed'
+sleep(1)
+puts '  0     0    0     0    0     0      0      0 --:--:--  0:00:35 --:--:--     0'
 
-sleep(4)
-
-puts 10
-
-sleep(4)
-
-puts 20
-
-sleep(4)
-
-puts 'ok'
+sleep(5)

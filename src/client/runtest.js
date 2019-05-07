@@ -1,6 +1,6 @@
 const { spawn } = require("child_process");
 const { getResponseMsg } = require("../util/util");
-const { testScriptPath, resultFilePath } = require("../../config");
+const { testScriptPath } = require("../../config");
 
 exports.runtest = function(sockets, id, content) {
   /* 执行脚本 */
