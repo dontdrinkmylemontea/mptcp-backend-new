@@ -14,6 +14,8 @@ exports.testScriptPath = "/home/yiyi/gd/backend/script/test.rb";
 /* 服务器生成日志路径 */
 exports.resultSavePath = "/home/yiyi/gd/backend/result/";
 
+exports.raplPath = "/home/yiyi/gd/backend/script/";
+
 // /* ping地址组 */
 // exports.pingAddrs = [
 //   "192.168.1.45",
@@ -31,3 +33,4 @@ exports.resultSavePath = "/home/yiyi/gd/backend/result/";
 // exports.testScriptPath = "/home/xjy/topo/test.rb";
 /* 服务器生成日志路径 */
 // exports.resultSavePath = "/home/draw/auto-control/backend/result/";
+// exports.raplPath = "/"
