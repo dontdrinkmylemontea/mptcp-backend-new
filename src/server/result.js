@@ -87,7 +87,7 @@ exports.result = function(
   const fileSavePath = `${resultSavePath}${saveName}`;
   fs.copyFile(resultFilePath, `${fileSavePath}.txt`, err => {
     if (err) {
-      throw err;
+      res.json(err.toString());
     }
   });
   const timesWrapper = times => {

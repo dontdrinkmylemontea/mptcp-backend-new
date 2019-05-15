@@ -1,0 +1,6 @@
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 4 count1: 1
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 7 count1: 1
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 10 count1: 1
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 30 count1: 1
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 35 count1: 1
+Oct  4 19:33:10 dawn-Wenxiang-E560 kernel: [  126.806446] mptcp_ctrl.c flownum: 1 time: 38 count1: 1
