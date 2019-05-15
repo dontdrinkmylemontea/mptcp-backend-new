@@ -3,6 +3,7 @@ const { getResponseMsg } = require("../util/util");
 const { testScriptPath, raplPath } = require("../../config").config;
 
 exports.runtest = function(sockets, id, content) {
+  /* 插入msr模块 */
   try {
     const result = execSync("modprobe msr");
     sockets.send(getResponseMsg(0, { message: result.toString(), id }));
@@ -15,7 +16,7 @@ exports.runtest = function(sockets, id, content) {
   for (const item in content) {
     args.push(` --${item}=${content[item]}`);
   }
-  const rubytest = spawn(`. ${raplPath}AppPowerMeter`, args);
+  const rubytest = spawn(`${raplPath}`, args);
   rubytest.stdout.on("data", data => {
     sockets.send(getResponseMsg(0, { message: data.toString(), id }));
   });

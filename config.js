@@ -1,10 +1,11 @@
 const produce = {
   pingAddrs: ["baidu.com", "1.1.1.1", "127.0.0.1", "zhoujielunabcdefg.com"],
   startScriptPath: "/home/yiyi/gd/backend/script/start.sh",
-  resultFilePath: "/home/yiyi/gd/backend/mock/result.txt",
+  resultFilePath: "/home/yiyi/gd/backend/log/kern.log",
   testScriptPath: "/home/yiyi/gd/backend/script/test.rb",
   resultSavePath: "/home/yiyi/gd/backend/result/",
-  raplPath: "/home/yiyi/gd/backend/script/"
+  raplPath: "/home/yiyi/gd/backend/script/rapl.sh",
+  produce: true
 };
 
 const build = {
