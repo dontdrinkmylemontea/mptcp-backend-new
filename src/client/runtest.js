@@ -14,13 +14,17 @@ exports.runtest = function(sockets, id, content) {
       args.push(` --${item}=${content[item]}`);
     }
     const rubytest = spawn(`${raplPath}`, args);
-    rubytest.stdout.on("data", data => {
-      sockets.send(getResponseMsg(0, { message: data.toString(), id }));
-    });
+    if(rubytest.stdout){
+      rubytest.stdout.on("data", data => {
+        sockets.send(getResponseMsg(0, { message: data.toString(), id }));
+      });
+    }
 
-    rubytest.stderr.on("data", data => {
-      sockets.send(getResponseMsg(-1, { message: data.toString(), id }));
-    });
+    if(rubytest.stderr){
+      rubytest.stderr.on("data", data => {
+        sockets.send(getResponseMsg(-1, { message: data.toString(), id }));
+      });
+    }
 
     rubytest.on("close", () => {
       sockets.send(getResponseMsg(1, { message: "测试结束。", id }));
