@@ -7,7 +7,8 @@
     "server": "node ./src/server/server.js",
     "client": "node ./src/client/client.js",
     "result": "node ./src/util/resultParser.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "buildS": "node ./src/server/server.js build",
+    "buildC": "node ./src/clident/clident.js build"
   },
   "author": "",
   "license": "ISC",

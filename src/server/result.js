@@ -1,6 +1,6 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
-const { resultFilePath, resultSavePath } = require("../../config");
+const { resultFilePath, resultSavePath } = require("../../config").config;
 const { getObj } = require("../util/util");
 
 // 按行读取

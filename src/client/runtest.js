@@ -1,6 +1,6 @@
 const { spawn, execSync } = require("child_process");
 const { getResponseMsg } = require("../util/util");
-const { testScriptPath, raplPath } = require("../../config");
+const { testScriptPath, raplPath } = require("../../config").config;
 
 exports.runtest = function(sockets, id, content) {
   try {

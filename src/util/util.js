@@ -1,5 +1,5 @@
 const { exec, execSync } = require("child_process");
-const { pingAddrs, startScriptPath } = require("../../config");
+const { pingAddrs, startScriptPath } = require("../../config").config;
 
 function getResponseMsg(error, data) {
   return JSON.stringify({ error, data });
