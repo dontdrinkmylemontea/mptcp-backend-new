@@ -50,7 +50,7 @@ exports.ping = function(socket, id) {
 
 exports.config = function(scheduler, congestion) {
   try {
-    const res = execSync(
+    let res = execSync(
       `sysctl -w net.mptcp.mptcp_scheduler=${scheduler}`
     ).toString();
 
