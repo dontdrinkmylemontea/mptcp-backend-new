@@ -8,19 +8,20 @@ exports.runtest = function(sockets, id, content) {
     const result = execSync("modprobe msr");
     sockets.send(getResponseMsg(0, { message: result.toString(), id }));
     /* 执行脚本 */
-    const args = ["ruby"];
+    const args = [];
     args.push(testScriptPath);
     for (const item in content) {
       args.push(` --${item}=${content[item]}`);
     }
-    const rubytest = spawn(`${raplPath}`, args);
-    if(rubytest.stdout){
+    const rubytest = spawn(`${raplPath}`, [args.join()]);
+    if (rubytest.stdout) {
       rubytest.stdout.on("data", data => {
+        console.log(data.toString());
         sockets.send(getResponseMsg(0, { message: data.toString(), id }));
       });
     }
 
-    if(rubytest.stderr){
+    if (rubytest.stderr) {
       rubytest.stderr.on("data", data => {
         sockets.send(getResponseMsg(-1, { message: data.toString(), id }));
       });

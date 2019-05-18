@@ -1,7 +1,6 @@
 #! /bin/bash
 
-echo "rapl \n"
-exec "$*"
-echo "Total Energy:    1.123J"
-echo "Average Power:   2.4119W"
-echo "Time:            5.01088sec"
+# 模拟rapl tools所做的事情
+echo "start"
+ruby "/home/yiyi/gd/backend/script/test.rb" "$1"
+echo "end"

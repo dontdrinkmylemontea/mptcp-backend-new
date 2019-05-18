@@ -21,11 +21,12 @@ _RTTVAR1 = cmdArgs["rttvar1"]
 
 # puts cmdArgs
 
-# puts _OBJSIZE
-# puts _BDVAR
-# puts _LIMITVAR
-# puts _REPNUM
-# puts _RTTVAR1
+puts _OBJSIZE
+puts _BDVAR
+puts _LIMITVAR
+puts _REPNUM
+puts _RTTVAR1
+
 puts "This script is going to run scripts and analyze the generated data then ouput the result into screen and save the records to log, trace and nsout folders respectively"
 sleep(1)
 puts "This script is runing WGET!.......Please wait!!This may take a long while!"
